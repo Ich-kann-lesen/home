@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+sudo setcap 'cap_sys_nice=eip' $(which Hyprland)
+dbus-run-session Hyprland

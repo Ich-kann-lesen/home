@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+pgrep .wofi-wrapped && pkill .wofi-wrapped || wofi drun

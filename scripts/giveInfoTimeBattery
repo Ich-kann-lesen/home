@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo $(date | awk -F ' ' '{printf "%s - %s %s %s %s", $4, $1, $2, $3, $6}')
+echo $(upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep -E 'percentage' | awk -F ' ' '{printf "Battery: %s", $2}')
