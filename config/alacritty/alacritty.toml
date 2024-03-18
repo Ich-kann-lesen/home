@@ -1,0 +1,70 @@
+[[colors.indexed_colors]]
+color = "0xaf3a03"
+index = 16
+
+[[colors.indexed_colors]]
+color = "0xd65d0e"
+index = 17
+
+[[colors.indexed_colors]]
+color = "0xebdbb2"
+index = 18
+
+[[colors.indexed_colors]]
+color = "0xd5c4a1"
+index = 19
+
+[[colors.indexed_colors]]
+color = "0x665c54"
+index = 20
+
+[[colors.indexed_colors]]
+color = "0x3c3836"
+index = 21
+
+[colors.bright]
+#black = "0xbdae93"
+#blue = "0x076678"
+#cyan = "0x427b58"
+#green = "0x79740e"
+#magenta = "0x8f3f71"
+#red = "0x9d0006"
+#white = "0x282828"
+#yellow = "0xb57614"
+
+[colors.cursor]
+cursor = "0x504945"
+text = "0xf9f5d7"
+
+ #[colors.normal]
+ #black = "0xf9f5d7"
+ #blue = "0x076678"
+ #cyan = "0x427b58"
+ #green = "0x79740e"
+ #magenta = "0x8f3f71"
+ #red = "0x9d0006"
+ #white = "0x504945"
+ #yellow = "0xb57614"
+
+[colors.primary]
+background = "0x282828"
+foreground = "0xE4D4AC"
+
+[cursor.style]
+shape = "Block"
+
+[font]
+size = 14.0
+
+#[font.normal]
+#family = "Source Code Pro"
+#size = 14.0
+
+[window]
+decorations = "full"
+dynamic_padding = true
+opacity = 1
+
+[window.padding]
+x = 6
+y = 5
