@@ -1,4 +1,4 @@
-# Edit this configuration file to define what should be installed on
+
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
@@ -129,8 +129,8 @@ services = {
 
 programs = {
   # Wayland WMs
-  hyprland.enable = true;
-  sway.enable = true;
+  #hyprland.enable = true;
+  #sway.enable = true;
 
   zsh.enable = true;
   
@@ -197,41 +197,43 @@ programs = {
 
     alacritty
     apple-cursor
-    arandr
+    #arandr
     arduino-ide
-    autotiling
+    #autotiling
     bluetuith
     btop
     cargo
-    cava
+    #cava
     cmake
-    cmatrix
-    conky
-    cowsay
+    #cmatrix
+    #conky
+    #cowsay
     discord
     figlet
     firefox
-    floorp
+    #floorp
+    ghostscript
     git
     glibc
     gnumake
-    gparted
+    #gparted
     gtk4
     htop
-    hyprpaper
+    #hyprpaper
     jq
-    kate
-    kitty
-    krabby
+    #kate
+    #kitty
+    #krabby
     krita
-    libreoffice
-    librewolf
-    mpv
+    #libreoffice
+    #librewolf
+    #mpv
     neofetch
     neovim
     ntfs3g
-    obs-studio
-    obsidian
+    #obs-studio
+    #obsidian
+    #pdftk
     plasma-browser-integration
     proxychains
     python3
@@ -242,13 +244,13 @@ programs = {
     signal-desktop
     spotify
     starship
-    typioca
     tree
+    typioca
     unzip
     upower
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    virtualbox
-    vscodium
+    #virtualbox
+    #vscodium
     weylus
     wget
     whatsapp-for-linux
@@ -262,7 +264,6 @@ programs = {
 #    gImagereader
 #    kdeconnect-kde
 #    xdg-utils-unstable
-
   ];
 
 
