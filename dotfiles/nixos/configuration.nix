@@ -76,15 +76,17 @@
 
 services = {
 
+
   xserver = {
     enable = true;
-    # Enable the X11 windowing system.
+    windowManager = {
+      #herbstluftwm.enable = true;
+      #qtile.enable = true;
+      #awesome.enable = true;
+    };
+    desktopManager.plasma6.enable = true;
     displayManager.sddm.enable = true;
-    # Enable the KDE Plasma Desktop Environment.
-    # desktopManager.plasma5.enable = true;
-  #  windowManager.herbstluftwm.enable = true;
-  #  windowManager.qtile.enable = true;
-  #  windowManager.awesome.enable = true;
+
 
   # Configure keymap in X11
     xkb = {
@@ -93,8 +95,6 @@ services = {
       options = "";
     };
   };
-
-  desktopManager.plasma6.enable = true;
 
   printing.enable = true;
 
@@ -130,7 +130,7 @@ services = {
 programs = {
   # Wayland WMs
   hyprland.enable = true;
-  #sway.enable = true;
+  sway.enable = true;
 
   zsh.enable = true;
   zsh.ohMyZsh.enable = true;
@@ -151,6 +151,12 @@ programs = {
   #   enableSSHSupport = true;
   # };
 
+  steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  };
+
 };
 
 
@@ -167,13 +173,13 @@ programs = {
   # enable bluetooth
   hardware.bluetooth.enable = true;
 
-  virtualisation.virtualbox.host.enable = true;
+  #virtualisation.virtualbox.host.enable = true;
   users = {
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.god = {
       isNormalUser = true;
       description = "Louis";
-      extraGroups = [ "networkmanager" "wheel" "dialout" "uinput"];
+      extraGroups = [ "networkmanager" "wheel" "dialout" "uinput" "input"];
       packages = with pkgs; [
        # thunderbird
         ];
@@ -231,6 +237,8 @@ programs = {
       libreoffice
       librewolf
       mpv
+      mumble
+      murmur
       neofetch
       neovim
       ntfs3g
@@ -250,6 +258,7 @@ programs = {
       unzip
       upower
       vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+      webcord
       #virtualbox
       #vscodium
       weylus
@@ -270,9 +279,7 @@ programs = {
   ++
 
   (with pkgs-stable; [
-    xz
     python3
-    python311Packages.pip
     python311Packages.pygame
   ]);
 
