@@ -13,7 +13,14 @@
       "electron-25.9.0"
     ];
 
+
+
   };
+  	
+  xdg.portal.wlr.enable = false;
+
+
+
   # Keep System up-to-date
   system.autoUpgrade.enable = true;
 
@@ -130,7 +137,7 @@ services = {
 programs = {
   # Wayland WMs
   hyprland.enable = true;
-  sway.enable = true;
+  #sway.enable = true;
 
   zsh.enable = true;
   zsh.ohMyZsh.enable = true;
@@ -165,8 +172,6 @@ programs = {
 
   # Enable CUPS to print documents.
 
-  # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
@@ -204,7 +209,12 @@ programs = {
 #|  __/ ___ \ |___| . \  / ___ \ |_| | |___ ___) |
 #|_| /_/   \_\____|_|\_\/_/   \_\____|_____|____/ 
 
+      #virtualbox
+      #vscodium
+      gcc
+      clang
       alacritty
+      android-tools
       apple-cursor
       arandr
       arduino-ide
@@ -220,7 +230,7 @@ programs = {
       discord
       figlet
       firefox
-      floorp
+      geekbench_5
       ghostscript
       git
       glibc
@@ -231,6 +241,7 @@ programs = {
       hyprpaper
       jq
       kate
+      libsForQt5.kdeconnect-kde
       kitty
       krabby
       krita
@@ -246,6 +257,7 @@ programs = {
       obsidian
       pdftk
       plasma-browser-integration
+      prismlauncher
       proxychains
       ranger
       ripgrep
@@ -255,12 +267,11 @@ programs = {
       starship
       tree
       typioca
+      universal-android-debloater
       unzip
       upower
       vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
       webcord
-      #virtualbox
-      #vscodium
       weylus
       wget
       whatsapp-for-linux
@@ -286,9 +297,17 @@ programs = {
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 1701 9001 ];
+  networking.firewall.allowedTCPPortRanges = [
+    { from = 1714; to = 1764; }
+  ];
+
   # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall.allowedUDPPortRanges = [
+    { from = 1714; to = 1764; }
+  ];
+
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
