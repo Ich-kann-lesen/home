@@ -2,6 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
+#{ config, lib, pkgs, pkgs-stable, cosmic, ... }:
 { config, lib, pkgs, pkgs-stable, ... }:
 
 {
@@ -17,7 +18,7 @@
 
   };
   	
-  xdg.portal.wlr.enable = false;
+  xdg.portal.wlr.enable = true;
 
 
 
@@ -81,6 +82,18 @@
 
 
 
+#services.desktopManager.cosmic.enable = true;
+
+services.tor = {
+  enable = true;
+  openFirewall = true;
+  relay = {
+    enable = true;
+    role = "relay";
+  };
+  client.enable = true;
+};
+
 services = {
 
 
@@ -92,7 +105,7 @@ services = {
       #awesome.enable = true;
     };
     desktopManager.plasma6.enable = true;
-    displayManager.sddm.enable = true;
+    #displayManager.sddm.enable = true;
 
 
   # Configure keymap in X11
@@ -138,10 +151,17 @@ programs = {
   # Wayland WMs
   hyprland.enable = true;
   #sway.enable = true;
+  river.enable = true;
+  wayfire.enable = true;
 
   zsh.enable = true;
   zsh.ohMyZsh.enable = true;
   starship.enable = true;
+
+  #virtualization
+  virt-manager.enable = true;
+
+  kdeconnect.enable = true;
   
   nix-ld.enable = true;
   nix-ld.libraries = with pkgs; [
@@ -179,6 +199,8 @@ programs = {
   hardware.bluetooth.enable = true;
 
   #virtualisation.virtualbox.host.enable = true;
+
+  virtualisation.libvirtd.enable = true;
   users = {
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.god = {
@@ -214,7 +236,6 @@ programs = {
       gcc
       clang
       alacritty
-      android-tools
       apple-cursor
       arandr
       arduino-ide
@@ -222,7 +243,6 @@ programs = {
       bluetuith
       btop
       cargo
-      cava
       cmake
       cmatrix
       conky
@@ -230,7 +250,6 @@ programs = {
       discord
       figlet
       firefox
-      geekbench_5
       ghostscript
       git
       glibc
@@ -241,12 +260,11 @@ programs = {
       hyprpaper
       jq
       kate
-      libsForQt5.kdeconnect-kde
       kitty
       krabby
       krita
       libreoffice
-      librewolf
+      #librewolf
       mpv
       mumble
       murmur
@@ -259,6 +277,7 @@ programs = {
       plasma-browser-integration
       prismlauncher
       proxychains
+      qbittorrent
       ranger
       ripgrep
       rustc
@@ -282,6 +301,8 @@ programs = {
       xdotool
       ydotool
       zip
+
+      floorp
   #    gImagereader
   #    kdeconnect-kde
   #    xdg-utils-unstable
@@ -292,22 +313,23 @@ programs = {
   (with pkgs-stable; [
     python3
     python311Packages.pygame
+    android-tools
   ]);
 
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 1701 9001 ];
-  networking.firewall.allowedTCPPortRanges = [
-    { from = 1714; to = 1764; }
-  ];
-
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  networking.firewall.allowedUDPPortRanges = [
-    { from = 1714; to = 1764; }
-  ];
-
-  # Or disable the firewall altogether.
-  networking.firewall.enable = true;
+  #networking.firewall.allowedTCPPorts = [ 1701 9001 ];
+  #networking.firewall.allowedTCPPortRanges = [
+    #{ from = 1714; to = 1764; }
+  #];
+#
+  ## networking.firewall.allowedUDPPorts = [ ... ];
+  #networking.firewall.allowedUDPPortRanges = [
+    #{ from = 1714; to = 1764; }
+  #];
+#
+  ## Or disable the firewall altogether.
+  #networking.firewall.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
