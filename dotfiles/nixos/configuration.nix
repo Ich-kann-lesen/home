@@ -96,6 +96,7 @@ services.tor = {
 
 services = {
 
+  pulseaudio.enable = false;
 
   xserver = {
     enable = true;
@@ -104,8 +105,6 @@ services = {
       #qtile.enable = true;
       #awesome.enable = true;
     };
-    desktopManager.plasma6.enable = true;
-    #displayManager.sddm.enable = true;
 
 
   # Configure keymap in X11
@@ -115,6 +114,11 @@ services = {
       options = "";
     };
   };
+
+  desktopManager.plasma6.enable = true;
+  displayManager.sddm.enable = true;
+
+
 
   printing.enable = true;
 
@@ -192,7 +196,6 @@ programs = {
 
   # Enable CUPS to print documents.
 
-  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
   # enable bluetooth
@@ -231,18 +234,20 @@ programs = {
 #|  __/ ___ \ |___| . \  / ___ \ |_| | |___ ___) |
 #|_| /_/   \_\____|_|\_\/_/   \_\____|_____|____/ 
 
+      #librewolf
       #virtualbox
       #vscodium
-      gcc
-      clang
+      nautilus
       alacritty
       apple-cursor
       arandr
       arduino-ide
       autotiling
       bluetuith
+      brightnessctl
       btop
       cargo
+      clang
       cmake
       cmatrix
       conky
@@ -250,11 +255,15 @@ programs = {
       discord
       figlet
       firefox
+      floorp
+      fortune
+      gcc
       ghostscript
       git
       glibc
       gnumake
       gparted
+      grim
       gtk4
       htop
       hyprpaper
@@ -264,7 +273,6 @@ programs = {
       krabby
       krita
       libreoffice
-      #librewolf
       mpv
       mumble
       murmur
@@ -273,6 +281,7 @@ programs = {
       ntfs3g
       obs-studio
       obsidian
+      pamixer
       pdftk
       plasma-browser-integration
       prismlauncher
@@ -282,6 +291,7 @@ programs = {
       ripgrep
       rustc
       signal-desktop
+      slurp
       spotify
       starship
       tree
@@ -289,11 +299,11 @@ programs = {
       universal-android-debloater
       unzip
       upower
-      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+      vim
+      waybar
       webcord
-      weylus
       wget
-      whatsapp-for-linux
+      whatsie
       wine
       wlr-randr
       wofi
@@ -301,8 +311,7 @@ programs = {
       xdotool
       ydotool
       zip
-
-      floorp
+      
   #    gImagereader
   #    kdeconnect-kde
   #    xdg-utils-unstable
@@ -315,21 +324,41 @@ programs = {
     python311Packages.pygame
     android-tools
   ]);
+  
+
+  # Fonts
+
+  fonts.packages = with pkgs; [
+  noto-fonts
+  noto-fonts-cjk-sans
+  noto-fonts-emoji
+  liberation_ttf
+  fira-code
+  fira-code-symbols
+  mplus-outline-fonts.githubRelease
+  dina-font
+  proggyfonts
+  font-awesome_6
+  nerd-fonts.fira-code
+  nerd-fonts.droid-sans-mono
+
+];
+
 
 
   # Open ports in the firewall.
-  #networking.firewall.allowedTCPPorts = [ 1701 9001 ];
-  #networking.firewall.allowedTCPPortRanges = [
-    #{ from = 1714; to = 1764; }
-  #];
+  networking.firewall.allowedTCPPorts = [ 1701 9001 ];
+  networking.firewall.allowedTCPPortRanges = [
+    { from = 1714; to = 1764; }
+  ];
 #
   ## networking.firewall.allowedUDPPorts = [ ... ];
-  #networking.firewall.allowedUDPPortRanges = [
-    #{ from = 1714; to = 1764; }
-  #];
+  networking.firewall.allowedUDPPortRanges = [
+    { from = 1714; to = 1764; }
+  ];
 #
   ## Or disable the firewall altogether.
-  #networking.firewall.enable = true;
+  networking.firewall.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
