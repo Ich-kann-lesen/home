@@ -2,12 +2,15 @@
   description = "My first flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
+
+
   };
 
 
-  outputs = { self, nixpkgs, nixpkgs-stable,  ... }:
+  outputs = { self, nixpkgs, nixpkgs-unstable }:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
@@ -20,7 +23,7 @@
 		};
       };
 
-      pkgs-stable = import nixpkgs-stable{
+      pkgs-unstable = import nixpkgs-unstable{
 	  	inherit system;
 
 		config = {
@@ -28,7 +31,8 @@
 		};
       };
 
-      username = "god";
+
+      username = "louis";
       name = "Louis";
     in {
       nixosConfigurations = {
@@ -37,10 +41,13 @@
             inherit system;
             inherit username;
             inherit name;
-            inherit pkgs-stable;
+            inherit pkgs-unstable;
           };
-          modules = [ ./nixos/configuration.nix ];
+          modules = [
+	    ./nixos/configuration.nix
+
+	  ];
         };
       };
-	};
+    };
 }
