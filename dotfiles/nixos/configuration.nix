@@ -2,8 +2,8 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-#{ config, lib, pkgs, pkgs-stable, cosmic, ... }:
-{ config, lib, pkgs, pkgs-stable, ... }:
+#{ config, lib, pkgs, pkgs-unstable, cosmic, ... }:
+{ config, lib, pkgs, pkgs-unstable, ... }:
 
 {
   # Allow unfree packages
@@ -35,7 +35,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "nixos-laptop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -81,8 +81,12 @@
 #|____/|_____|_| \_\ \_/  |___\____|_____|____/ 
 
 
+# Enable the COSMIC login manager
+services.displayManager.cosmic-greeter.enable = true;
 
-#services.desktopManager.cosmic.enable = true;
+# Enable the COSMIC desktop environment
+services.desktopManager.cosmic.enable = true;
+
 
 services.tor = {
   enable = true;
@@ -94,9 +98,13 @@ services.tor = {
   client.enable = true;
 };
 
+
 services = {
 
   pulseaudio.enable = false;
+
+  #desktopManager.plasma6.enable = true; 
+  #displayManager.sddm.enable = true;
 
   xserver = {
     enable = true;
@@ -115,10 +123,7 @@ services = {
     };
   };
 
-  desktopManager.plasma6.enable = true;
-  displayManager.sddm.enable = true;
-
-
+  #desktopManager.plasma.enable = true;
 
   printing.enable = true;
 
@@ -154,9 +159,6 @@ services = {
 programs = {
   # Wayland WMs
   hyprland.enable = true;
-  #sway.enable = true;
-  river.enable = true;
-  wayfire.enable = true;
 
   zsh.enable = true;
   zsh.ohMyZsh.enable = true;
@@ -206,7 +208,7 @@ programs = {
   virtualisation.libvirtd.enable = true;
   users = {
     # Define a user account. Don't forget to set a password with ‘passwd’.
-    users.god = {
+    users.louis = {
       isNormalUser = true;
       description = "Louis";
       extraGroups = [ "networkmanager" "wheel" "dialout" "uinput" "input"];
@@ -215,7 +217,7 @@ programs = {
         ];
   };
 
-  extraGroups.vboxusers.members = [ "god" ];
+  extraGroups.vboxusers.members = [ "louis " ];
 
   defaultUserShell = pkgs.zsh;
 };
@@ -236,10 +238,16 @@ programs = {
 
       #librewolf
       #virtualbox
-      #vscodium
+      
+      #LazyVim
+      fzf
+      ripgrep
+      fd
+
       nautilus
       alacritty
       apple-cursor
+      android-studio
       arandr
       arduino-ide
       autotiling
@@ -268,7 +276,8 @@ programs = {
       htop
       hyprpaper
       jq
-      kate
+      kdePackages.krdc
+      kdePackages.krfb
       kitty
       krabby
       krita
@@ -277,14 +286,12 @@ programs = {
       mumble
       murmur
       neofetch
-      neovim
+      nodejs_24
       ntfs3g
       obs-studio
       obsidian
       pamixer
       pdftk
-      plasma-browser-integration
-      prismlauncher
       proxychains
       qbittorrent
       ranger
@@ -292,18 +299,19 @@ programs = {
       rustc
       signal-desktop
       slurp
-      spotify
       starship
+      thunderbird
+      tmux
       tree
       typioca
       universal-android-debloater
       unzip
       upower
       vim
+      vscodium
       waybar
       webcord
       wget
-      whatsie
       wine
       wlr-randr
       wofi
@@ -319,10 +327,11 @@ programs = {
 
   ++
 
-  (with pkgs-stable; [
+  (with pkgs-unstable; [
     python3
     python311Packages.pygame
     android-tools
+    neovim
   ]);
   
 
@@ -339,8 +348,8 @@ programs = {
   dina-font
   proggyfonts
   font-awesome_6
-  nerd-fonts.fira-code
-  nerd-fonts.droid-sans-mono
+  pkgs.nerd-fonts._0xproto
+  pkgs.nerd-fonts.droid-sans-mono
 
 ];
 
